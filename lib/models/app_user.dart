@@ -12,10 +12,12 @@ class AppUser{
   AppUser({required this.uid, this.email, this.userName, this.photoURL, this.createdAt, this.updatedAt, this.level});
 
   Map<String, dynamic> toMap(){
+    final String unPart1 = this.email!.substring(0, this.email!.indexOf('@'));
+    final String unPart2 = this.email!.substring(this.email!.indexOf('@')+1, this.email!.indexOf('.'));
     Map<String, dynamic> map = Map();
     map['uid'] = this.uid;
     map['email'] = this.email ?? '';
-    map['userName'] = this.userName ?? '';
+    map['userName'] = this.userName ?? unPart1 + unPart2;
     map['photoURL'] = this.photoURL ?? 'https://www.elderwood.com/MediaUploads/person.png';
     map['createdAt'] = this.createdAt ?? '';
     map['updatedAt'] = this.updatedAt ?? '';

@@ -13,45 +13,41 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   TabItem tabItem = TabItem.Conversation;
 
-  Map<TabItem, Widget> get pages{
-    return{
-      TabItem.Conversation : ConversationPage(),
-      TabItem.Profile : ProfilePage()
-    };
-  }
+  GlobalKey<NavigatorState> conversationNaviKey = GlobalKey<NavigatorState>();
+  GlobalKey<NavigatorState> profileNaviKey = GlobalKey<NavigatorState>();
+
+  Map<TabItem, Widget> get pages => {
+    TabItem.Conversation : ConversationPage(),
+    TabItem.Profile : ProfilePage()
+  };
+
+  Map<TabItem, GlobalKey<NavigatorState>> get navigatorStateGlobalKeys => {
+    TabItem.Conversation : conversationNaviKey,
+    TabItem.Profile : profileNaviKey
+  };
 
   @override
   Widget build(BuildContext context) {
     //final UserBloc userBloc = BlocProvider.of<UserBloc>(context);
-    final Size size = MediaQuery.of(context).size;
-    return Container(
-      width: size.width,
-      height: size.height,
+    //final Size size = MediaQuery.of(context).size;
+    return WillPopScope(
+      onWillPop: () async{
+        return !await navigatorStateGlobalKeys[tabItem]!.currentState!.maybePop();
+      },
       child: BottomNavBarPage(
         tabItem: tabItem,
         pages: pages,
+        navigatorStateGlobalKeys: navigatorStateGlobalKeys,
         onSelectedTab: (selectedTabItem){
-          setState(() {
-            tabItem = selectedTabItem;
-          });
+          if(selectedTabItem == tabItem){
+            navigatorStateGlobalKeys[selectedTabItem]!.currentState!.popUntil((route) => route.isFirst);
+          }else{
+            setState(() {
+              tabItem = selectedTabItem;
+            });
+          }
         },
       ),
-      /*Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-            'Welcome User!\nID: ${(userBloc.state as UserSignedInState).user!.uid}',
-              textAlign: TextAlign.center,
-            ),
-            ElevatedButton(
-              child: Text('Log Out'),
-              onPressed: () async {
-                userBloc.add(UserSignOutEvent());
-              },
-            ),
-
-          ],
-        ),*/
     );
   }
 }

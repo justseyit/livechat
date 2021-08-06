@@ -4,11 +4,12 @@ import 'package:flutter/material.dart';
 enum TabItem{Conversation, Profile}
 
 class BottomNavBarPage extends StatelessWidget {
-  const BottomNavBarPage({Key? key, required this.tabItem, required this.onSelectedTab, required this.pages}) : super(key: key);
+  const BottomNavBarPage({Key? key, required this.tabItem, required this.onSelectedTab, required this.pages, required this.navigatorStateGlobalKeys}) : super(key: key);
 
   final TabItem tabItem;
   final ValueChanged<TabItem> onSelectedTab;
   final Map<TabItem, Widget> pages;
+  final Map<TabItem, GlobalKey<NavigatorState>> navigatorStateGlobalKeys;
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +24,9 @@ class BottomNavBarPage extends StatelessWidget {
         },
       ),
       tabBuilder: (context, index){
-        final TabItem item = TabItem.values[index];
+        TabItem item = TabItem.values[index];
         return CupertinoTabView(
+          navigatorKey: navigatorStateGlobalKeys[item],
           builder: (context){
             return pages[item]!;
           },
