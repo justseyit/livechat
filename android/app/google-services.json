@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "665917329441",
+    "project_id": "livechat-a6233",
+    "storage_bucket": "livechat-a6233.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:665917329441:android:d588f876d21734b7329360",
+        "android_client_info": {
+          "package_name": "com.chainbreak.livechat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "665917329441-i6au6afpku5mg7chlrcjn472akpsvgeb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.chainbreak.livechat",
+            "certificate_hash": "dac9f697956e0210559a2c4a3a40e5aa081eaa6d"
+          }
+        },
+        {
+          "client_id": "665917329441-gitp9llg68dnlddgt1nrbmnk2oi7bkji.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARniAsTbbWMfQZvjOGF5m58tNqirmBoqs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "665917329441-gitp9llg68dnlddgt1nrbmnk2oi7bkji.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
