@@ -1,6 +1,6 @@
 # livechat
 
-A live chat app.
+A live chat app with Flutter, Dart
 
 ## Getting Started
 
